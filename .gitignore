@@ -1,0 +1,8 @@
+# Respuestas crudas de la API: se rebajan solas con 01_bajar.py
+datos/cache/
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+~$*

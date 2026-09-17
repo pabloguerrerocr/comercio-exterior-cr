@@ -1,0 +1,52 @@
+// Medidas DAX — pegar una por una en Power BI (Modelado > Nueva medida)
+
+Valor = SUM(hechos[valor_usd])
+
+Exportaciones =
+CALCULATE([Valor], hechos[flujo] = "Exportacion")
+
+Importaciones =
+CALCULATE([Valor], hechos[flujo] = "Importacion")
+
+Saldo comercial = [Exportaciones] - [Importaciones]
+
+// Total del anio ignorando el filtro de socio: es el denominador de la cuota.
+Exportaciones del anio =
+CALCULATE([Exportaciones], ALL(dim_socio), ALL(dim_capitulo))
+
+Cuota del destino =
+DIVIDE([Exportaciones], [Exportaciones del anio])
+
+// Concentracion: suma de los cuadrados de las cuotas de cada socio.
+// 0 = perfectamente disperso, 1 = un solo destino.
+HHI =
+VAR Total = [Exportaciones del anio]
+RETURN
+SUMX(
+    VALUES(dim_socio[socio_cod]),
+    VAR Cuota = DIVIDE(CALCULATE([Exportaciones]), Total)
+    RETURN Cuota * Cuota
+)
+
+// Cuanto pesan los N destinos mas grandes.
+Top 4 destinos % =
+VAR Total = [Exportaciones del anio]
+VAR Top =
+    TOPN(4, VALUES(dim_socio[socio_cod]), CALCULATE([Exportaciones]), DESC)
+RETURN
+DIVIDE(SUMX(Top, CALCULATE([Exportaciones])), Total)
+
+Dependencia de EEUU =
+DIVIDE(
+    CALCULATE([Exportaciones], dim_socio[socio] = "USA"),
+    [Exportaciones del anio]
+)
+
+// Variacion contra el anio anterior, por posicion en dim_anio.
+Exportaciones anio anterior =
+VAR A = SELECTEDVALUE(dim_anio[anio])
+RETURN CALCULATE([Exportaciones], ALL(dim_anio), dim_anio[anio] = A - 1)
+
+Crecimiento % =
+DIVIDE([Exportaciones] - [Exportaciones anio anterior],
+       [Exportaciones anio anterior])
