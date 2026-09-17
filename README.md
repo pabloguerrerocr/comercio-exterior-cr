@@ -11,12 +11,18 @@ producto.**
 | Concentrado en 4 destinos | 54,0 % | **66,7 %** |
 | Índice Herfindahl de destinos | 0,160 | **0,248** |
 
+![Concentración de las exportaciones](figuras/01_concentracion.png)
+
 Y el crecimiento tiene un solo autor: el **capítulo 90 del sistema armonizado**
 —instrumentos médicos, ópticos y de precisión— pasó de $1.100 M a $8.750 M y
 explica por sí solo el **70,5 %** de todo el aumento exportador del período.
 
+![Qué explica el crecimiento](figuras/02_capitulos.png)
+
 Un producto, a un país. Esa es la exposición real del sector externo
 costarricense, y no se ve mirando el total.
+
+![Balanza comercial](figuras/03_balanza.png)
 
 ## Correr
 
@@ -37,6 +43,7 @@ python 05_powerbi.py    # el modelo para Power BI
 | `03_excel.py` | libro de Excel **con fórmulas vivas**, no valores pegados |
 | `04_power_query.m` | la misma ingesta en lenguaje M, para refrescar desde Excel |
 | `05_powerbi.py` | modelo dimensional y 10 medidas DAX para Power BI |
+| `06_figuras.py` | las tres figuras de este README |
 | `Comercio_exterior_CR.xlsx` | el entregable de Excel |
 
 ## El libro de Excel
