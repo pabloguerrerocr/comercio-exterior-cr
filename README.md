@@ -1,5 +1,7 @@
 # El comercio exterior de Costa Rica se concentró, no se diversificó
 
+*[English version](README.en.md)*
+
 **Entre 2010 y 2024 las exportaciones ticas se duplicaron con creces. Y al mismo
 tiempo se volvieron mucho más dependientes de un solo país y de un solo
 producto.**
