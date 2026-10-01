@@ -2,6 +2,8 @@
 
 *[Versión en español](README.md)*
 
+**[Explore the interactive dashboard →](https://pabloguerrerocr.github.io/comercio/)** (in Spanish) Destinations, products and concentration year by year.
+
 **Between 2010 and 2024 Costa Rican exports more than doubled. At the same time
 they became far more dependent on a single country and a single product.**
 
