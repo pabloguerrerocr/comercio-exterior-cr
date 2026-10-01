@@ -2,6 +2,8 @@
 
 *[English version](README.en.md)*
 
+**[Explorar el tablero interactivo →](https://pabloguerrerocr.github.io/comercio/)** Destinos, productos y concentración año por año.
+
 **Entre 2010 y 2024 las exportaciones ticas se duplicaron con creces. Y al mismo
 tiempo se volvieron mucho más dependientes de un solo país y de un solo
 producto.**
