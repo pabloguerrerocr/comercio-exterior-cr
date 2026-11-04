@@ -49,15 +49,28 @@ for x, y in [(conc.anio.iloc[0], conc.top1_pc.iloc[0]), (conc.anio.iloc[-1], con
                 ha="center", fontweight="bold", color=NARANJA)
 ax.set_ylabel("% de las exportaciones")
 ax.set_ylim(30, 90)
-ax.legend(frameon=False, loc="center left")
-cerrar(fig, "01_concentracion.png", "La concentración subió todos los años",
+# La leyenda va debajo del grafico: adentro tapa alguna de las tres lineas.
+ax.legend(frameon=False, loc="upper center", bbox_to_anchor=(.5, -.09), ncols=3)
+cerrar(fig, "01_concentracion.png",
+       f"La concentración subió: Estados Unidos pasó de {conc.top1_pc.iloc[0]:.0f}% "
+       f"a {conc.top1_pc.iloc[-1]:.0f}%",
        "Participación en las exportaciones totales de Costa Rica, 2010-2024.")
 
 # 2 ── quien explica el crecimiento
+# Nombres cortos en espanol de los capitulos que suelen aparecer; los demas
+# caen al nombre en ingles del catalogo de COMTRADE.
+CAPITULOS_ES = {90: "Instrumentos médicos y de precisión", 8: "Frutas",
+                21: "Preparaciones alimenticias diversas",
+                39: "Plástico y sus manufacturas",
+                20: "Preparaciones de hortalizas y frutas",
+                7: "Hortalizas, raíces y tubérculos", 30: "Productos farmacéuticos",
+                96: "Manufacturas diversas"}
 c = cap.sort_values("cambio").tail(8)
 fig, ax = plt.subplots(figsize=(11, 5.6))
 col = [NARANJA if a > 20 else AZUL for a in c.aporte_pc]
-ax.barh([t[:44] for t in c.capitulo], c.cambio / 1e9, color=col)
+etiquetas = [f"{CAPITULOS_ES.get(int(k), str(t)[:40])} ({int(k):02d})"
+             for k, t in zip(c.cap_cod, c.capitulo)]
+ax.barh(etiquetas, c.cambio / 1e9, color=col)
 for i, (v, a) in enumerate(zip(c.cambio / 1e9, c.aporte_pc)):
     ax.text(v + .12, i, f"{a:.1f}% del crecimiento", va="center", fontsize=9.5, color="#444")
 ax.set_xlabel("cambio en las exportaciones 2010-2024, miles de millones USD")
@@ -75,10 +88,11 @@ ax.plot(mundo.index, mundo.Exportacion, "o-", color=AZUL, lw=2.5, label="exporta
 ax.plot(mundo.index, mundo.Importacion, "s-", color=NARANJA, lw=2.5, label="importaciones")
 ax.set_ylabel("miles de millones de USD")
 ax.legend(frameon=False, loc="upper left")
-ax.annotate(f"déficit\n{mundo.Exportacion.iloc[-1] - mundo.Importacion.iloc[-1]:.1f} mm",
+ax.annotate(f"déficit de\n{mundo.Importacion.iloc[-1] - mundo.Exportacion.iloc[-1]:.1f} mm\nen {mundo.index[-1]}",
             (mundo.index[-1], (mundo.Exportacion.iloc[-1] + mundo.Importacion.iloc[-1]) / 2),
-            textcoords="offset points", xytext=(-52, 0), fontsize=10, color=NARANJA,
-            fontweight="bold", ha="center")
+            textcoords="offset points", xytext=(12, 0), fontsize=10, color=NARANJA,
+            fontweight="bold", ha="left", va="center")
+ax.set_xlim(mundo.index.min() - .5, mundo.index.max() + 1.8)
 cerrar(fig, "03_balanza.png", "El déficit comercial es persistente",
        "Costa Rica importa más de lo que exporta todos los años del período.")
 
