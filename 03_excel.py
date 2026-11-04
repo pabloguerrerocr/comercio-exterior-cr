@@ -82,7 +82,7 @@ filas = [
     ("Dependencia de Estados Unidos", "=IFERROR(B9/B6,0)"),
     ("Socios de destino distintos",
      f'=COUNTIFS(datos_socio!A2:A{n_soc},$B$4,datos_socio!B2:B{n_soc},"Exportacion",'
-     f'datos_socio!E2:E{n_soc},FALSE)-1'),
+     f'datos_socio!E2:E{n_soc},FALSE)'),
     ("Exportado en el capítulo 90 (USD)",
      f'=SUMIFS(datos_producto!E2:E{n_pro},datos_producto!A2:A{n_pro},$B$4,'
      f'datos_producto!B2:B{n_pro},"Exportacion",datos_producto!C2:C{n_pro},90)'),
