@@ -1,0 +1,3 @@
+# El .m es Power Query (lenguaje M), no Wolfram ni MATLAB.
+*.m linguist-language=Power-Query
+*.html linguist-generated

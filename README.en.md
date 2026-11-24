@@ -2,6 +2,8 @@
 
 *[Versión en español](README.md)*
 
+**Tools:** Excel (live formulas, Power Query) · Power BI (DAX) · Python (pandas, matplotlib)
+
 **[Explore the interactive dashboard →](https://pabloguerrerocr.github.io/comercio/)** (in Spanish) Destinations, products and concentration year by year.
 
 **Between 2010 and 2024 Costa Rican exports more than doubled. At the same time
